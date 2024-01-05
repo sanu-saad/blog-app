@@ -47,7 +47,27 @@ const createBlogController = async (req, res) => {
 };
 
 //UPDATE BLOG
-const updateBlogController = async (req, res) => {};
+const updateBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, image } = req.body;
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      { ...req.body },
+      { new: true }
+    );
+    return res.status(201).send({
+      message: "Blog updated",
+      blog,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({
+      message: "error while updating blog",
+      error,
+    });
+  }
+};
 
 //GET SINGLE BLOG
 const getSingleBlogController = async (req, res) => {};
