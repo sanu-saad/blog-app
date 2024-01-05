@@ -70,10 +70,45 @@ const updateBlogController = async (req, res) => {
 };
 
 //GET SINGLE BLOG
-const getSingleBlogController = async (req, res) => {};
+const getSingleBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blog = await Blog.findById(id);
+    if (!blog) {
+      return res.status(400).send({
+        message: "not found blog",
+      });
+    }
+
+    return res.status(201).send({
+      message: "fetch single blog",
+      blog,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({
+      message: "error while get single blog",
+      error,
+    });
+  }
+};
 
 //DELETE BLOG
-const deleteBlogController = async (req, res) => {};
+const deleteBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blog = await Blog.findByIdAndDelete(id);
+    return res.status(200).send({
+      message : 'Delete blog'
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({
+      message: "error while deleting blog",
+      error,
+    });
+  }
+};
 
 export {
   getAllBlogController,
