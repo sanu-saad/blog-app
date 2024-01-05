@@ -23,7 +23,28 @@ const getAllBlogController = async (req, res) => {
 };
 
 //CREATE BLOG
-const createBlogController = async (req, res) => {};
+const createBlogController = async (req, res) => {
+  try {
+    const { title, description, image } = req.body;
+    if (!title || !description || !image) {
+      return res.status(400).send({
+        message: "All fields require",
+      });
+    }
+    const newBlog = new Blog({ title, description, image });
+    await newBlog.save();
+    return res.status(201).send({
+      message: "Blog created",
+      newBlog,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({
+      message: "Error while creating blog",
+      error,
+    });
+  }
+};
 
 //UPDATE BLOG
 const updateBlogController = async (req, res) => {};

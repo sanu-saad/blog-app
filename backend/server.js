@@ -20,7 +20,7 @@ connectDB();
 
 //routes
 app.use("/api/v1/user", userRoutes);
-app.use("api/v1/blog", blogRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 app.listen(PORT, () => {
   console.log(`server listen on ${PORT}`);
