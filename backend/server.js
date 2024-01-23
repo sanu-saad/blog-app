@@ -8,8 +8,7 @@ dotenv.config();
 const app = express();
 
 //router import
-import userRoutes from "./routes/userRoutes.js";
-import blogRoutes from "./routes/blogRoutes.js";
+import authRoute from "./routes/authRoute.js";
 
 //middleware
 app.use(express.json());
@@ -19,8 +18,7 @@ app.use(cors());
 connectDB();
 
 //routes
-app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/blog", blogRoutes);
+app.use("/api/v1/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log(`server listen on ${PORT}`);
