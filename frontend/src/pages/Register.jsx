@@ -1,9 +1,10 @@
 import { useState } from "react";
 import LayOut from "../components/LayOut/LayOut";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -15,10 +16,22 @@ const Register = () => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
-    toast.success("User register successfully");
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/auth/register",
+        input
+      );
+      if (res.data.success) {
+        alert("user register");
+        navigate("/login");
+      } else {
+        alert("not register");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <LayOut>
