@@ -1,15 +1,15 @@
 import express from "express";
 import {
-  loginController,
-  registerController,
+  signUpController,
+  signInController,
 } from "../controllers/authController.js";
 
 const router = express.Router();
 
 //REGISTER || METHOD : POST
-router.post("/register", registerController);
+router.post("/signup", signUpController);
 
 //LOGIN || METHOD : POST
-router.post("/login", loginController);
+router.post("/signin", signInController);
 
 export default router;
