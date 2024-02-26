@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import DashSideBar from "../components/DashSideBar";
-import DashProfile from "../components/DashProfile";
-const Dashbord = () => {
+import { Link, NavLink, useLocation } from "react-router-dom";
+
+const DashSideBar = () => {
   const location = useLocation();
   // console.log(location); isme path name , search etc milenge
   const [tab, setTab] = useState("");
@@ -15,14 +14,17 @@ const Dashbord = () => {
     }
   }, [location.search]);
   return (
-    <div className="flex bg-gray-700 min-h-screen">
-      <div className="w-1/4">
-        <DashSideBar />
-      </div>
-      {/* profile */}
-      <div className="">{tab === "profile" && <DashProfile />}</div>
+    <div className="bg-gray-800  h-full w-full">
+      <ul className="flex flex-col text-center  gap-2 ">
+        <li className={tab === "profile" ? "active" : ""}>
+          <Link>PROFILE</Link>
+        </li>
+        <li>
+          <Link className="">Sign Out</Link>
+        </li>
+      </ul>
     </div>
   );
 };
 
-export default Dashbord;
+export default DashSideBar;

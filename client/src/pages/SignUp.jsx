@@ -74,7 +74,7 @@ const SignUp = () => {
             name="password"
             onChange={handleChange}
           />
-          <button className="btn mt-3" disabled={loading}>
+          <button className="btn w-full mt-3" disabled={loading}>
             {loading ? "loading..." : "Signup"}
           </button>
         </form>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate, useDispatch, useSelector } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   signInStart,
   signInSuccess,
@@ -84,8 +85,8 @@ const SignIn = () => {
             name="password"
             onChange={handleChange}
           />
-          <button className="btn mt-3" disabled={loading}>
-            {loading ? "loading..." : "Signup"}
+          <button className="btn w-full mt-3" disabled={loading}>
+            {loading ? "loading..." : "Signin"}
           </button>
         </form>
         <span>Not register ?</span>
